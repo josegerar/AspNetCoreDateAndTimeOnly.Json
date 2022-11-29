@@ -24,6 +24,9 @@ public static class JSONExtensions
             return (string)(object)request.ToString()!;
         }
         JsonSerializerOptions defaultOptions = new JsonSerializerOptions(JsonSerializerDefaults.Web);
+#if NET6_0
+        defaultOptions.Converters.AddDateAndTimeJsonConverters();
+#endif
         configure?.Invoke(defaultOptions);
         return JsonSerializer.Serialize(request, defaultOptions);
     }
@@ -52,6 +55,9 @@ public static class JSONExtensions
             return (T)(object)new Guid(request);
         }
         var settings = new JsonSerializerOptions(JsonSerializerDefaults.Web);
+#if NET6_0
+        settings.Converters.AddDateAndTimeJsonConverters();
+#endif
         configure?.Invoke(settings);
         return JsonSerializer.Deserialize<T>(request, settings);
     }
