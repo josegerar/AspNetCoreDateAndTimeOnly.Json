@@ -1,53 +1,47 @@
-# AspNetCoreDateAndTimeOnly
-A library that supports DateOnly and TimeOnly data types for AspNetCore.
+# AspNetCoreDateAndTimeOnly.Json
+Add DateOnly and TimeOnly support to AspNetCore and additional functionality for working with System.Text.Json
 
 ## Installing
 You can also install via the .NET CLI with the following command:
 ```
-dotnet add package AspNetCoreDateAndTimeOnly
+dotnet add package AspNetCoreDateAndTimeOnly.Json
 ```
 If you're using Visual Studio you can also install via the built in NuGet package manager.
 
-## Usage
-To support DateOnly and TimeOnly in SqlServer EntitityFrameworkCore add the `AddSuportDateAndTimeSqlServer` extension after `UseSqlServer`.
-
+## Parse Object to Json
 ```csharp
-builder.Services.AddDbContext<TContext>(options =>
-        {
-            options.UseSqlServer(conection);
-            options.AddSuportDateAndTimeSqlServer();
-        });
+string stringjson = objectdata.ToJSON();
 ```
-In the `OnModelCreating` of the `DbContext` use the extension function `AddSqlFunctions`.
-```csharp
-protected override void OnModelCreating(ModelBuilder modelBuilder)
-    {
-        base.OnModelCreating(modelBuilder);
 
-        modelBuilder.AddSqlFunctions();
-    }
+## Parse string Json to Object
+```csharp
+MyObject objectdata = stringjson.GetJSON<MyObject>();
 ```
-You can use the `ToDateOnly` extension function in queries to compare Datetime with DateOnly.
 
+## Clone Object
 ```csharp
-queryable.Where(t => t.DatetimeProperty.ToDateOnly() == dateOnlyParameter)
+MyObject newobjectdata = objectdata.Clone<MyObject>();
 ```
 
 ## .Net 6
-In net 6 you have to add a TypeDescriptor to the MvcBuilder with the `UseDateOnlyTimeOnlyStringConverters` extension and converters with the `AddDateAndTimeJsonConverters` extension in `AddJsonOptions` of the MvcBuilder.
+In net 6 you have to add converters with the `AddDateAndTimeJsonConverters` extension in `AddJsonOptions` of the MvcBuilder.
 
 ```csharp
-builder.Services.AddControllers(options =>
-        {
-            options.UseDateOnlyTimeOnlyStringConverters();
-        })
+builder.Services.AddControllers()
         .AddJsonOptions(options =>
         {
             options.JsonSerializerOptions.Converters.AddDateAndTimeJsonConverters();
         });
 ```
-## Swagger
-Add DateOnly and TimeOnly support for Swagger with the `UseDateOnlyTimeOnlyStringConverters` extension method.
+## .Net 7
+You can use the `DynamicContractResolver` class to serialize or deserialize JSON conversions in a custom way. 
 ```csharp
-builder.Services.AddSwaggerGen(c => c.UseDateOnlyTimeOnlyStringConverters());
+var settings = new JsonSerializerOptions
+        {
+            TypeInfoResolver = new DynamicContractResolver(properties, ignoreProperties, ignoreNull),
+        };
 ```
+Where.
+`properties` is an array with the properties of the object you want to serialize.
+`ignoreProperties` es un array con las propiedades del objecto que quiere ignorar.
+`ignoreNull` is a boolean value to indicate whether to ignore null properties (also ignores empty IEnumerable).
