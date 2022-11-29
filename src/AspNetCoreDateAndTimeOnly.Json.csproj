@@ -8,7 +8,7 @@
 
 		<Copyright>Copyright (c) 2022 AspNetCoreDateAndTimeOnly.Json</Copyright>
 		<Title>Add DateOnly and TimeOnly support to AspNetCore and additional functionality for working with Json</Title>
-		<Version>1.0.0</Version>
+		<Version>1.0.1</Version>
 		<Authors>Jose Garcia Lopez</Authors>
 		<Description>Add DateOnly and TimeOnly support to AspNetCore and additional functionality for working with System.Text.Json</Description>
 		<PackageProjectUrl>https://github.com/josegerar/AspNetCoreDateAndTimeOnly.Json</PackageProjectUrl>
@@ -19,6 +19,7 @@
 		<PackageLicenseFile>LICENSE</PackageLicenseFile>
 
 		<PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
+		<PackageReleaseNotes>Add null to DynamicContractResolver parameters</PackageReleaseNotes>
 	</PropertyGroup>
 
 	<ItemGroup>

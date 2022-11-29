@@ -7,12 +7,12 @@ namespace AspNetCoreDateAndTimeOnly.Json;
 #if NET7_0_OR_GREATER
 public class DynamicContractResolver : DefaultJsonTypeInfoResolver
 {
-    private readonly string[] _ignoreSerializeAtributes;
+    private readonly string[]? _ignoreSerializeAtributes;
     private readonly bool _ignoreNullOrEmpty;
-    private readonly string[] _properties;
+    private readonly string[]? _properties;
 
-    public DynamicContractResolver(string[] properties,
-        string[] ignoreSerializeAtributes, bool ignoreNullOrEmpty = false)
+    public DynamicContractResolver(string[]? properties = null,
+        string[]? ignoreSerializeAtributes = null, bool ignoreNullOrEmpty = false)
     {
         _ignoreSerializeAtributes = ignoreSerializeAtributes;
         _ignoreNullOrEmpty = ignoreNullOrEmpty;
