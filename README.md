@@ -43,5 +43,5 @@ var settings = new JsonSerializerOptions
 ```
 Where.
 `properties` is an array with the properties of the object you want to serialize.
-`ignoreProperties` es un array con las propiedades del objecto que quiere ignorar.
+`ignoreProperties` is an array with the properties of the object you want to ignore.
 `ignoreNull` is a boolean value to indicate whether to ignore null properties (also ignores empty IEnumerable).
