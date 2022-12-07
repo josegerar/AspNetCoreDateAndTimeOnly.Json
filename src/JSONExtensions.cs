@@ -46,6 +46,11 @@ public static class JSONExtensions
 
     public static T? GetJSON<T>(this string request, Action<JsonSerializerOptions>? configure = null)
     {
+        if (string.IsNullOrEmpty(request))
+        {
+            return default;
+        }
+
         if (typeof(T) == typeof(string))
         {
             return (T)(object)request;
