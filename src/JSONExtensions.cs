@@ -17,7 +17,6 @@ public static class JSONExtensions
     {
         if (request.GetType().IsPrimitive
             || request.GetType() == typeof(string)
-            || request.GetType() == typeof(DateTime)
             || request.GetType() == typeof(Guid)
             || request.GetType() == typeof(decimal))
         {
