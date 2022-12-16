@@ -26,6 +26,7 @@ public static class JSONExtensions
 #if NET6_0
         defaultOptions.Converters.AddDateAndTimeJsonConverters();
 #endif
+
         configure?.Invoke(defaultOptions);
         return JsonSerializer.Serialize(request, defaultOptions);
     }
