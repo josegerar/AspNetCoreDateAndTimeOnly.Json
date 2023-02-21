@@ -8,7 +8,7 @@
 
 		<Copyright>Copyright (c) 2022 AspNetCoreDateAndTimeOnly.Json</Copyright>
 		<Title>Add DateOnly and TimeOnly support to AspNetCore and additional functionality for working with Json</Title>
-		<Version>1.0.2</Version>
+		<Version>1.0.3</Version>
 		<Authors>Jose Garcia Lopez</Authors>
 		<Description>Add DateOnly and TimeOnly support to AspNetCore and additional functionality for working with System.Text.Json</Description>
 		<PackageProjectUrl>https://github.com/josegerar/AspNetCoreDateAndTimeOnly.Json</PackageProjectUrl>
@@ -19,7 +19,7 @@
 		<PackageLicenseFile>LICENSE</PackageLicenseFile>
 
 		<PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
-		<PackageReleaseNotes>Bug fix with empty strings in GetJSON extension method</PackageReleaseNotes>
+		<PackageReleaseNotes>Separate contants in CSharpNetUtilities library</PackageReleaseNotes>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -31,6 +31,10 @@
 	    <Pack>True</Pack>
 	    <PackagePath>\</PackagePath>
 	  </None>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <PackageReference Include="CSharpNetUtilities" Version="1.1.0" />
 	</ItemGroup>
 
 	<ItemGroup>
